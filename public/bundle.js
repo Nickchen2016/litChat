@@ -29082,15 +29082,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_app_scss__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const Typing = addComment => {
+const Typing = ({ addComment }) => {
     const [newText, setnewText] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
-    const updateText = (e) => {
+    const handleChange = (e) => {
         e.preventDefault();
         console.log(e.target.value);
+        setnewText(e.target.value);
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let newComment = {
+            text: newText,
+            who: '1'
+        };
+        addComment(newComment);
+        setnewText('');
     };
     return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { id: 'typing_area' },
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", { id: 'typing_area' },
-            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", { type: 'text', onChange: (e) => updateText(e) }),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", { id: 'typing_area', onSubmit: handleSubmit },
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", { type: 'text', value: newText, onChange: (e) => handleChange(e) }),
             react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", { type: 'submit' }))));
 };
 
