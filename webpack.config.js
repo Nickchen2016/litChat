@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.tsx',
+    entry: './client_src/index.tsx',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'public')
@@ -11,7 +11,7 @@ module.exports = {
             {
                 test: /\.tsx$/,
                 use: 'ts-loader',
-                include: [path.resolve(__dirname, 'src')]
+                include: [path.resolve(__dirname, 'client_src')]
             },
             {
                 test: /\.scss$/,
@@ -27,14 +27,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader'
                 }
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                  loader: 'babel-loader'
-                }
-              }
+            }
         ]
     },
     devtool: 'source-maps',
@@ -42,7 +35,4 @@ module.exports = {
         extensions: ['.ts','.tsx', '.js', '.json'] // Add '.ts|.tsx' as a resolvable extension, and let the upper ts-loader to handle to compilation. 
     },
     mode: 'development'
-    // plugins: [
-
-    // ]
 }

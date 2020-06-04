@@ -16,12 +16,14 @@ export const Typing:React.FC<addCommentProps> = ({addComment}) => {
     }
     const handleSubmit:UpdateTextFunc = (e: React.FormEvent) => {
         e.preventDefault();
-        let newComment ={
-            text: newText,
-            who: '1'
-        };
-        addComment(newComment);
-        setnewText('');
+        if(newText!=''){
+            let newComment ={
+                text: newText,
+                who: '1'
+            };
+            addComment(newComment);
+            setnewText('');
+        }
     }
 
     return (
