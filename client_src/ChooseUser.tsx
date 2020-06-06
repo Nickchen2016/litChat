@@ -7,15 +7,14 @@ import { userStructure } from './redux/reduxTypes';
 function ChooseUser(props: PickMyUser) {
 
 
-    console.log('props form choose user ',props)
+    console.log('props form choose user ',props.users)
     return (
             <div id='pick_user'>
-                hello
-                {/* {userIdArr.map((user,idx)=>{
+                {props.users.map((user,idx)=>{
                     return (
-                        <div className='user_box' key={idx}></div>
+                        <div className='user_box' key={idx}>{user.name}</div>
                     )
-                })} */}
+                })}
             </div>
     )
 }

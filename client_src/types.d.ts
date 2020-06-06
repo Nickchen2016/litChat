@@ -11,6 +11,7 @@ type PickUser = () => void;
 
 interface PickMyUser {
     pickUser: ()=> void;
+    users: userStructure[];
 }
 
 interface AppProps {
