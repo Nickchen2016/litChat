@@ -19,7 +19,7 @@ export const Typing:React.FC<addCommentProps> = ({addComment}) => {
         if(newText!=''){
             let newComment ={
                 text: newText,
-                who: '1'
+                userId: 'user11'
             };
             addComment(newComment);
             setnewText('');

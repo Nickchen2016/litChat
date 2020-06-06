@@ -10,9 +10,7 @@ router.post('/', (req,res,next)=>{
     });
     comment.save().then(result=>{
         console.log(result);
-        res.status(201).json({
-            createdProduct: result
-        })
+        res.status(201).json([result])
     })
     .catch(err => console.log(err));
 })

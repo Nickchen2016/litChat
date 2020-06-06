@@ -1,6 +1,6 @@
 type CommentStructure = {
     text: string;
-    who: string;
+    userId: string;
 }
 
 type AddCommentFunc = (addComment: CommentStructure) => void;

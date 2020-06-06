@@ -20,7 +20,6 @@ export function getAllComments(data: dataStructure[]): ActionTypes{
 export const fetchComments = () =>{
 
     return (dispatch: Dispatch<ActionTypes>) =>{
-        console.log('I was here!!!!!');
         axios.get('/comments')
             .then(res=>{
                 dispatch(getAllComments(res.data))  
@@ -44,7 +43,7 @@ const commentReducer = (state = initialState, action: ActionTypes): dataStructur
         case GET_COMMENTS:
             return state.concat(action.comments);
         case POST_COMMENT:
-            return [...state, action.comment];
+            return state.concat(action.comment);
         default:
             return state;
     }

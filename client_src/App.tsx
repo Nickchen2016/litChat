@@ -2,34 +2,41 @@ import React, { useState, useEffect } from 'react';
 import { Typing } from './Typing';
 import { Comment } from './Comment';
 import { connect } from 'react-redux';
-import { fetchComments } from './redux/getComments';
+import { fetchComments, postComment } from './redux/getComments';
 import { AppState } from './store';
 import { ThunkDispatch } from "redux-thunk";
 import { Dispatch, bindActionCreators } from "redux";
 import { dataStructure, ActionTypes } from './redux/reduxTypes';
 import './app.scss';
 
-const initialComment: Array<CommentStructure> = [
-    {text: 'Hey, Nick, hows goin?', who: '1'},
-    {text: 'Yo, I am doing well tho', who: '2'}
-]
 
-function App(props: any) {
+interface AppProps {
+    comments: dataStructure[],
+    fetchComments: () => void,
+    addAComment: (data: dataStructure)=> void
+}
 
-    const [comments, setcomment] = useState(initialComment);
+function App(props: AppProps) {
+
+    const [commentList, setcomment] = useState(props.comments);
 
     useEffect(()=>{
-        console.log('here is the props ', props.fetchComments())
-        // props.fetchComments();
+        props.fetchComments();
     },[])
 
+    useEffect(()=>{
+        setcomment(props.comments)
+    },[props])
+    console.log(props, commentList)
+
     const addComment:AddCommentFunc = data => {
-        setcomment([...comments, data]);
+        // setcomment([...comments, data]);
+        props.addAComment(data);
     }
 
     return (
         <div id='chat_window'>
-            <Comment comments={comments}/>
+            <Comment comments={commentList}/>
             <Typing addComment={addComment}/>
         </div>
     )
@@ -41,6 +48,7 @@ interface getData {
 
 interface fetchData {
     fetchComments: () => void;
+    addAComment: (data: dataStructure)=> void;
 }
 
 const mapState = (state: AppState): getData => ({
@@ -48,7 +56,8 @@ const mapState = (state: AppState): getData => ({
 });
 
 const mapDispatch = (dispatch: ThunkDispatch<any, any, ActionTypes>): fetchData => ({
-    fetchComments: bindActionCreators(fetchComments, dispatch)
+    fetchComments: bindActionCreators(fetchComments, dispatch),
+    addAComment: bindActionCreators(postComment ,dispatch)
 })
 
 
