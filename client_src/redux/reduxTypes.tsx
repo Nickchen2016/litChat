@@ -3,9 +3,16 @@ export interface dataStructure {
     userId: string;
 }
 
+export interface userStructure {
+    name: string;
+    userId: string;
+}
+
 // //action type
 export const POST_COMMENT = "POST_COMMENT";
 export const GET_COMMENTS = "GET_COMMENTS";
+
+export const GET_USERS = "GET_USERS";
 
 //action creator type
 export interface PostAComment {
@@ -18,4 +25,9 @@ export interface GetAllComments {
     comments: dataStructure[];
 }
 
-export type ActionTypes = PostAComment | GetAllComments;
+export interface GetAllUsers {
+    type: typeof GET_USERS;
+    users: userStructure[];
+}
+
+export type ActionTypes = PostAComment | GetAllComments | GetAllUsers;

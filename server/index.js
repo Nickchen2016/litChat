@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const user = require('./api/user');
+const users = require('./api/users');
 const comments = require('./api/comments');
 
 const PORT = 5000;
@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'build')))
 
-app.use('/user', user);
+app.use('/users', users);
 app.use('/comments', comments);
 
 app.get('*', (req, res) => {

@@ -19,7 +19,6 @@ router.get('/', (req,res,next)=>{
     CommnetSchema.find()
     .exec()
     .then(docs=>{
-        console.log('here is the total comments: ', docs);
         res.status(200).json(docs);
     })
     .catch(err=>{

@@ -21,3 +21,16 @@ body {
     align-items: center;
     justify-content: center;
 }
+#pick_user {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.user_box {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid white;
+    cursor: pointer;
+    background-color: darkslategray;
+}

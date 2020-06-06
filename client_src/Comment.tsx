@@ -1,5 +1,4 @@
 import React from 'react';
-import './app.scss';
 
 interface LoopComments {
     comments: Array<CommentStructure>

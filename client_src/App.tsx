@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Typing } from './Typing';
+import { Form } from './Form';
 import { Comment } from './Comment';
 import { connect } from 'react-redux';
 import { fetchComments, postComment } from './redux/getComments';
+import { fetchUsers } from './redux/getUserInfo';
 import { AppState } from './store';
 import { ThunkDispatch } from "redux-thunk";
 import { Dispatch, bindActionCreators } from "redux";
-import { dataStructure, ActionTypes } from './redux/reduxTypes';
+import { dataStructure, ActionTypes, userStructure } from './redux/reduxTypes';
 import './app.scss';
 
 
-interface AppProps {
-    comments: dataStructure[],
-    fetchComments: () => void,
-    addAComment: (data: dataStructure)=> void
-}
 
 function App(props: AppProps) {
 
@@ -22,42 +18,46 @@ function App(props: AppProps) {
 
     useEffect(()=>{
         props.fetchComments();
+        props.fetchUsers();
     },[])
 
     useEffect(()=>{
         setcomment(props.comments)
     },[props])
-    console.log(props, commentList)
+    console.log('we props',props)
 
     const addComment:AddCommentFunc = data => {
-        // setcomment([...comments, data]);
         props.addAComment(data);
     }
 
     return (
         <div id='chat_window'>
             <Comment comments={commentList}/>
-            <Typing addComment={addComment}/>
+            <Form addComment={addComment}/>
         </div>
     )
 }
 
 interface getData {
     comments: dataStructure[];
+    users: userStructure[];
 }
 
 interface fetchData {
     fetchComments: () => void;
     addAComment: (data: dataStructure)=> void;
+    fetchUsers: () => void;
 }
 
 const mapState = (state: AppState): getData => ({
-    comments: state.comments
+    comments: state.comments,
+    users: state.users
 });
 
 const mapDispatch = (dispatch: ThunkDispatch<any, any, ActionTypes>): fetchData => ({
     fetchComments: bindActionCreators(fetchComments, dispatch),
-    addAComment: bindActionCreators(postComment ,dispatch)
+    addAComment: bindActionCreators(postComment ,dispatch),
+    fetchUsers: bindActionCreators(fetchUsers, dispatch)
 })
 
 
