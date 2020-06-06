@@ -8,6 +8,7 @@ interface addCommentProps {
 export const Form:React.FC<addCommentProps> = ({addComment}) => {
 
     const [newText, setnewText] = useState('');
+    const [pickedUser, setpickedUser] = useState('');
     const [isUser, setisUser] = useState(false);
 
     const handleChange:UpdateTextFunc = (e)=> {
@@ -20,14 +21,15 @@ export const Form:React.FC<addCommentProps> = ({addComment}) => {
         if(newText!=''){
             let newComment ={
                 text: newText,
-                userId: 'user11'
+                userId: pickedUser
             };
             addComment(newComment);
             setnewText('');
         }
     }
 
-    const pickUser:PickUser = () => {
+    const pickUser:PickUser = (info) => {
+        setpickedUser(info.userId);
         setisUser(!isUser);
     }
 
@@ -41,6 +43,9 @@ export const Form:React.FC<addCommentProps> = ({addComment}) => {
                 </div>
         )
     }else{
-        return  <ChooseUser pickUser={pickUser}/>
+        return  (
+            <div id='typing_area'>
+                <ChooseUser pickUser={pickUser}/>
+            </div>)
     }
 }

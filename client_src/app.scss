@@ -24,11 +24,10 @@ body {
     background-color: darkgray;
 }
 #typing_area {
-    height: 12vh;
+    height: 30vh;
     @include centerEveryThing();
 }
 #pick_user {
-    height: 30vh;
     @include centerEveryThing();
 }
 .user_box {

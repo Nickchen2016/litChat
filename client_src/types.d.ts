@@ -7,16 +7,16 @@ type AddCommentFunc = (addComment: CommentStructure) => void;
 
 type UpdateTextFunc = (event: any) => void;
 
-type PickUser = () => void;
+type PickUser = (info: userStructure) => void;
 
 interface PickMyUser {
-    pickUser: ()=> void;
+    pickUser: (info)=> void;
     users: userStructure[];
 }
 
 interface AppProps {
-    comments: dataStructure[],
-    fetchComments: () => void,
-    addAComment: (data: dataStructure)=> void,
-    fetchUsers: () => void
+    comments: dataStructure[];
+    fetchComments: () => void;
+    addAComment: (data: dataStructure)=> void;
+    fetchUsers: () => void;
 }

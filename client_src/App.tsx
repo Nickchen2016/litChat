@@ -24,7 +24,7 @@ function App(props: AppProps) {
     useEffect(()=>{
         setcomment(props.comments)
     },[props])
-    console.log('we props',props)
+    // console.log('we props',props)
 
     const addComment:AddCommentFunc = data => {
         props.addAComment(data);
