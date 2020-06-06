@@ -9,7 +9,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx$/,
+                test: /\.tsx?$/,
                 use: 'ts-loader',
                 include: [path.resolve(__dirname, 'client_src')]
             },

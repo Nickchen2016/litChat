@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const user = require('./api/user');
 const comments = require('./api/comments');
@@ -28,15 +29,19 @@ async function mgdb() {
 
 mgdb();
 
+app.use(express.static(path.join(__dirname, '../public')));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, 'build')))
 
 app.use('/user', user);
 app.use('/comments', comments);
 
-
-
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+}); // Send index.html for any other requests
 
 // app.get('/', (req,res)=>{
 //     res.send('hello server!')
