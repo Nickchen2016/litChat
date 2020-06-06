@@ -22,6 +22,7 @@ body {
 #comment_area {
     height: 70vh;
     background-color: darkgray;
+    overflow: auto;
 }
 #typing_area {
     height: 30vh;
@@ -43,9 +44,10 @@ body {
 
 .text_box {
     @include centerEveryThing();
-    width: fit-content;
-    padding: 1%; margin: 4%;
+    width: fit-content; max-width: 40%;
+    padding: 1%; margin: 1% 4%;
     color: black;
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: white;
+    clear: both;
 }

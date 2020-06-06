@@ -40,7 +40,7 @@ function App(props: AppProps) {
 
     return (
         <div id='chat_window'>
-            <Comment comments={commentList}/>
+            <Comment comments={commentList} pickedUser={pickedUser} users={props.users} />
             {isUser?
                 <Form addComment={addComment} pickedUser={pickedUser} users={props.users} />
                 :<ChooseUser pickUser={pickUser} users={props.users} />
