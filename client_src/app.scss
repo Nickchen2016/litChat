@@ -1,6 +1,14 @@
+$myFont : sans-serif;
+@mixin centerEveryThing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 body {
     margin: 0;
+    font-family: $myFont;
 }
 #chat_window {
     display: flex;
@@ -12,25 +20,27 @@ body {
     color: white;
 }
 #comment_area {
-    height: 88vh;
+    height: 70vh;
     background-color: darkgray;
 }
 #typing_area {
     height: 12vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include centerEveryThing();
 }
 #pick_user {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    height: 30vh;
+    @include centerEveryThing();
 }
 .user_box {
-    width: 40px; height: 40px;
+    width: 80px; height: 80px;
     border-radius: 50%;
-    border: 1px solid white;
+    border: 2px solid white;
+    background-color: gray;
+    margin: 0 30px;
+    font-size: 1.2rem;
+    @include centerEveryThing();
     cursor: pointer;
-    background-color: darkslategray;
+}
+.user_box:hover {
+    opacity: .5;
 }
