@@ -27,9 +27,6 @@ body {
     height: 30vh;
     @include centerEveryThing();
 }
-#pick_user {
-    @include centerEveryThing();
-}
 .user_box {
     width: 80px; height: 80px;
     border-radius: 50%;
@@ -42,4 +39,13 @@ body {
 }
 .user_box:hover {
     opacity: .5;
+}
+
+.text_box {
+    @include centerEveryThing();
+    width: fit-content;
+    padding: 1%; margin: 4%;
+    color: black;
+    border-radius: 10px;
+    background-color: white;
 }

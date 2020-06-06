@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import ChooseUser from './ChooseUser';
+import { dataStructure } from './redux/reduxTypes';
 
 interface addCommentProps {
     addComment: AddCommentFunc;
+    pickedUser: string;
+    users: dataStructure[];
 }
 
-export const Form:React.FC<addCommentProps> = ({addComment}) => {
+export const Form:React.FC<addCommentProps> = ({addComment, pickedUser, users}) => {
 
     const [newText, setnewText] = useState('');
-    const [pickedUser, setpickedUser] = useState('');
-    const [isUser, setisUser] = useState(false);
 
     const handleChange:UpdateTextFunc = (e)=> {
         e.preventDefault();
@@ -28,24 +28,12 @@ export const Form:React.FC<addCommentProps> = ({addComment}) => {
         }
     }
 
-    const pickUser:PickUser = (info) => {
-        setpickedUser(info.userId);
-        setisUser(!isUser);
-    }
-
-    if(isUser){
-        return (
-                <div id='typing_area'>
-                    <form id='typing_area' onSubmit={handleSubmit}>
-                        <input type='text' value={newText} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>handleChange(e)}/>
-                        <input type='submit'/>
-                    </form>
-                </div>
-        )
-    }else{
-        return  (
+    return (
             <div id='typing_area'>
-                <ChooseUser pickUser={pickUser}/>
-            </div>)
-    }
+                <form id='typing_area' onSubmit={handleSubmit}>
+                    <input type='text' value={newText} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>handleChange(e)}/>
+                    <input type='submit'/>
+                </form>
+            </div>
+    )
 }

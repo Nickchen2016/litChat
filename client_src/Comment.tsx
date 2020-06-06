@@ -11,9 +11,9 @@ export const Comment:React.FC<LoopComments> = ({comments}) => {
             <div id='comment_area'>
                 {comments.map((data,index)=>{
                     return (
-                        <li key={index}>
+                        <div className='text_box' key={index}>
                             {data.text}
-                        </li>
+                        </div>
                     )
                 })}
 

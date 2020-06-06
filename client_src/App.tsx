@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form } from './Form';
 import { Comment } from './Comment';
+import { ChooseUser } from './ChooseUser';
 import { connect } from 'react-redux';
 import { fetchComments, postComment } from './redux/getComments';
 import { fetchUsers } from './redux/getUserInfo';
@@ -15,6 +16,8 @@ import './app.scss';
 function App(props: AppProps) {
 
     const [commentList, setcomment] = useState(props.comments);
+    const [pickedUser, setpickedUser] = useState('');
+    const [isUser, setisUser] = useState(false);
 
     useEffect(()=>{
         props.fetchComments();
@@ -30,10 +33,18 @@ function App(props: AppProps) {
         props.addAComment(data);
     }
 
+    const pickUser:PickUser = (info) => {
+        setpickedUser(info.userId);
+        setisUser(!isUser);
+    }
+
     return (
         <div id='chat_window'>
             <Comment comments={commentList}/>
-            <Form addComment={addComment}/>
+            {isUser?
+                <Form addComment={addComment} pickedUser={pickedUser} users={props.users} />
+                :<ChooseUser pickUser={pickUser} users={props.users} />
+            }
         </div>
     )
 }
