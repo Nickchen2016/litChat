@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { dataStructure } from './redux/reduxTypes';
+import socket from './socket';
 
 interface addCommentProps {
     addComment: AddCommentFunc;
@@ -14,6 +15,7 @@ export const Form:React.FC<addCommentProps> = ({addComment, pickedUser, users}) 
     const handleChange:UpdateTextFunc = (e)=> {
         e.preventDefault();
         console.log(e.target.value);
+        socket.emit('is_typing', true);
         setnewText(e.target.value);
     }
     const handleSubmit:UpdateTextFunc = (e: React.FormEvent) => {

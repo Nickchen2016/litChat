@@ -27,7 +27,6 @@ function App(props: AppProps) {
     useEffect(()=>{
         setcomment(props.comments)
     },[props])
-    // console.log('we props',props)
 
     const addComment:AddCommentFunc = data => {
         props.addAComment(data);
@@ -40,7 +39,7 @@ function App(props: AppProps) {
 
     return (
         <div id='chat_window'>
-            <Comment comments={commentList} pickedUser={pickedUser} users={props.users} />
+            <Comment comments={commentList} pickedUser={pickedUser} users={props.users} isUser={isUser}/>
             {isUser?
                 <Form addComment={addComment} pickedUser={pickedUser} users={props.users} />
                 :<ChooseUser pickUser={pickUser} users={props.users} />

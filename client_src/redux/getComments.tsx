@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Dispatch } from "redux";
 import { ActionTypes, POST_COMMENT, GET_COMMENTS, dataStructure } from './reduxTypes';
 import { AppState } from '../store';
+import socket from '../socket';
 
 
 //Initial State
@@ -22,7 +23,7 @@ export const fetchComments = () =>{
     return (dispatch: Dispatch<ActionTypes>) =>{
         axios.get('/comments')
             .then(res=>{
-                dispatch(getAllComments(res.data))  
+                dispatch(getAllComments(res.data));
             }).catch(err=>console.log(err));
     }
 }
@@ -32,7 +33,8 @@ export const postComment = (data: dataStructure) =>{
     return (dispatch: Dispatch<ActionTypes>) =>
         axios.post('/comments', data)
             .then(res=>{
-                dispatch(postAComment(res.data))
+                dispatch(postAComment(res.data));
+                socket.emit('update_counter_comment', true);
             }).catch(err=>console.log(err))
 }
 
@@ -41,7 +43,7 @@ export const postComment = (data: dataStructure) =>{
 const commentReducer = (state = initialState, action: ActionTypes): dataStructure[] =>{
     switch(action.type){
         case GET_COMMENTS:
-            return state.concat(action.comments);
+            return action.comments;
         case POST_COMMENT:
             return state.concat(action.comment);
         default:

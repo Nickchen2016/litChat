@@ -6,6 +6,7 @@ const path = require('path');
 
 const users = require('./api/users');
 const comments = require('./api/comments');
+const socketio = require('socket.io');
 
 const PORT = 5000;
 
@@ -47,6 +48,9 @@ app.get('*', (req, res) => {
 //     res.send('hello server!')
 // })
 
-app.listen(PORT, ()=>{
+const server = app.listen(PORT, ()=>{
     console.log(`app is listening on port ${PORT}`)
 })
+
+const io = socketio(server);
+require('./socket')(io);
