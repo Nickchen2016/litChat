@@ -17,6 +17,7 @@ interface PickMyUser {
 interface AppProps {
     comments: dataStructure[];
     users: userStructure[];
+    isTyping: boolean;
     fetchComments: () => void;
     addAComment: (data: dataStructure)=> void;
     fetchUsers: () => void;

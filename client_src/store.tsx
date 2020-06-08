@@ -4,9 +4,10 @@ import thunk, { ThunkMiddleware } from 'redux-thunk';
 import loggingMiddleware from 'redux-logger';
 import commentReducer from './redux/getComments';
 import userReducer from './redux/getUserInfo';
+import TypingReducer from './redux/isCounterTyping';
 import { ActionTypes } from './redux/reduxTypes';
 
-const reducer = combineReducers({ comments: commentReducer, users: userReducer });
+const reducer = combineReducers({ comments: commentReducer, users: userReducer, isTyping: TypingReducer });
 
 export type AppState = ReturnType<typeof reducer>;
 
@@ -14,7 +15,7 @@ const store = createStore(
     reducer,
     composeWithDevTools(applyMiddleware(
         thunk as ThunkMiddleware<AppState, ActionTypes>,
-        loggingMiddleware
+        // loggingMiddleware
     ))
 );
 

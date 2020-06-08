@@ -34,7 +34,7 @@ export const postComment = (data: dataStructure) =>{
         axios.post('/comments', data)
             .then(res=>{
                 dispatch(postAComment(res.data));
-                socket.emit('update_counter_comment', true);
+                socket.emit('update_counter_comment');
             }).catch(err=>console.log(err))
 }
 

@@ -14,7 +14,6 @@ export const Form:React.FC<addCommentProps> = ({addComment, pickedUser, users}) 
 
     const handleChange:UpdateTextFunc = (e)=> {
         e.preventDefault();
-        console.log(e.target.value);
         socket.emit('is_typing', true);
         setnewText(e.target.value);
     }
@@ -29,10 +28,13 @@ export const Form:React.FC<addCommentProps> = ({addComment, pickedUser, users}) 
             setnewText('');
         }
     }
+    const handleClick: UpdateTextFunc = () => {
+        socket.emit('is_typing', false);
+    }
 
     return (
-            <div id='typing_area'>
-                <form id='typing_area' onSubmit={handleSubmit}>
+            <div id='typing_area' onClick={handleClick}>
+                <form onSubmit={handleSubmit}>
                     <input type='text' value={newText} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>handleChange(e)}/>
                     <input type='submit'/>
                 </form>

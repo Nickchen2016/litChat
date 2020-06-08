@@ -14,6 +14,9 @@ export const GET_COMMENTS = "GET_COMMENTS";
 
 export const GET_USERS = "GET_USERS";
 
+export const IS_TYPING = "IS_TYPING";
+export const NOT_TYPING = "NOT_TYPRING";
+
 //action creator type
 export interface PostAComment {
     type: typeof POST_COMMENT;
@@ -30,4 +33,14 @@ export interface GetAllUsers {
     users: userStructure[];
 }
 
-export type ActionTypes = PostAComment | GetAllComments | GetAllUsers;
+export interface ShowTypingType {
+    type: typeof IS_TYPING;
+    isTyping: boolean;
+}
+
+export interface doneTypingType {
+    type: typeof NOT_TYPING;
+    notTyping: boolean;
+}
+
+export type ActionTypes = PostAComment | GetAllComments | GetAllUsers | ShowTypingType | doneTypingType;

@@ -9,6 +9,7 @@ import { AppState } from './store';
 import { ThunkDispatch } from "redux-thunk";
 import { Dispatch, bindActionCreators } from "redux";
 import { dataStructure, ActionTypes, userStructure } from './redux/reduxTypes';
+import socket from './socket';
 import './app.scss';
 
 
@@ -26,10 +27,12 @@ function App(props: AppProps) {
 
     useEffect(()=>{
         setcomment(props.comments)
+        console.log('.......', props)
     },[props])
 
     const addComment:AddCommentFunc = data => {
         props.addAComment(data);
+        socket.emit('is_typing', false);
     }
 
     const pickUser:PickUser = (info) => {
@@ -39,7 +42,7 @@ function App(props: AppProps) {
 
     return (
         <div id='chat_window'>
-            <Comment comments={commentList} pickedUser={pickedUser} users={props.users} isUser={isUser}/>
+            <Comment comments={commentList} pickedUser={pickedUser} users={props.users} isUser={isUser} isTyping={props.isTyping} />
             {isUser?
                 <Form addComment={addComment} pickedUser={pickedUser} users={props.users} />
                 :<ChooseUser pickUser={pickUser} users={props.users} />
@@ -51,6 +54,7 @@ function App(props: AppProps) {
 interface getData {
     comments: dataStructure[];
     users: userStructure[];
+    isTyping: boolean;
 }
 
 interface fetchData {
@@ -61,7 +65,8 @@ interface fetchData {
 
 const mapState = (state: AppState): getData => ({
     comments: state.comments,
-    users: state.users
+    users: state.users,
+    isTyping: state.isTyping
 });
 
 const mapDispatch = (dispatch: ThunkDispatch<any, any, ActionTypes>): fetchData => ({
