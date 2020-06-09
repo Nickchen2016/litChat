@@ -8,7 +8,10 @@ const users = require('./api/users');
 const comments = require('./api/comments');
 const socketio = require('socket.io');
 
-const PORT = 5000;
+let PORT = process.env.PORT;
+if(PORT == null || PORT == ''){
+  PORT = 5000;
+}
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
