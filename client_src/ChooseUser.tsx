@@ -11,7 +11,6 @@ export function ChooseUser(props: PickMyUser) {
         socket.emit('one_user_has_been_choosed', info);
     }
 
-    // console.log('props form choose user ',props.users)
     return (
             <div id='typing_area'>
                 {props.users.map((user,idx)=>{
