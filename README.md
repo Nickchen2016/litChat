@@ -1,7 +1,8 @@
 # litChat
-# Install
+## Install
 run npm i
-# start server
-backend run: nodemon server
-frontend run: npm run build
-# Demo App
+## start server
+Backend run: nodemon server
+Frontend run: npm run build
+## Demo App
+<img src='./public/img/litChatDemo.gif'/>
