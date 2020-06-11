@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from "redux";
 import { ActionTypes, POST_COMMENT, GET_COMMENTS, dataStructure } from './reduxTypes';
-import { AppState } from '../store';
 import socket from '../socket';
-
 
 //Initial State
 const initialState: dataStructure[] = [];
@@ -12,7 +10,6 @@ const initialState: dataStructure[] = [];
 export function postAComment(data: dataStructure): ActionTypes{
     return {type: POST_COMMENT, comment: data}
 }
-
 export function getAllComments(data: dataStructure[]): ActionTypes{
     return {type: GET_COMMENTS, comments: data}
 }
@@ -37,7 +34,6 @@ export const postComment = (data: dataStructure) =>{
                 socket.emit('update_counter_comment');
             }).catch(err=>console.log(err))
 }
-
 
 //reducer
 const commentReducer = (state = initialState, action: ActionTypes): dataStructure[] =>{
