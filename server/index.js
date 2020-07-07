@@ -13,6 +13,8 @@ if(PORT == null || PORT == ''){
   PORT = 5000;
 }
 
+// const DB_URI = 'mongodb://mongo:27017/litchat';
+
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
@@ -21,7 +23,10 @@ const uri = `mongodb+srv://iconic:${process.env.PASS}@litchat-rtwxj.mongodb.net/
 
 async function mgdb() {
     try {
-      await mongoose.connect(uri, {
+      await mongoose.connect(
+        uri,
+        // DB_URI, // Use default DB for mongo on docker
+        {
         useUnifiedTopology: true,
         useNewUrlParser: true,
       });
