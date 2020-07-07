@@ -5,6 +5,12 @@ run npm i
 <p>Backend run: nodemon server</p>
 <p>Frontend run: npm run build</p>
 
+## Docker User Guide
+After clone the app:</br>
+<p>Run: docker-compose build</p>
+<p>Run: docker-compose up</p>
+Go to -> localhost:5000 </br>
+
 ## Demo App
 <img src='./public/img/litChatDemo.gif'/>
 
